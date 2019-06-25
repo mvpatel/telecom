@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Import;
 @Import({ SwaggerConfig.class})
 public class TelecomApiApplication {
     public static void main(String[] args) {
+
+        System.out.println("starting Project");
         SpringApplication.run(TelecomApiApplication.class, args);
+        System.out.println("Ending Project");
     }
 }
