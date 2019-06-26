@@ -19,20 +19,20 @@ public class PhoneNumberServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        phoneNumberService.addPhoneNumber(1L, "00441234567890", false);
+        phoneNumberService.addPhoneNumber(1L, "00441234567890", true);
         phoneNumberService.addPhoneNumber(1L, "00441234567891", false);
         phoneNumberService.addPhoneNumber(1L, "00441234567892", false);
         phoneNumberService.addPhoneNumber(1L, "00441234567893", false);
-        phoneNumberService.addPhoneNumber(2L, "00441234567894", true);
+        phoneNumberService.addPhoneNumber(2L, "00441234567894", false);
         phoneNumberService.addPhoneNumber(2L, "00441234567895", false);
     }
 
     @Test
     public void testCorrectAddPhoneNumber() throws Exception {
 
-        int beforeAddSize = phoneNumberService.listPhoneNumber().size();
+        int beforeAddSize = phoneNumberService.getAllPhoneNumber().size();
         phoneNumberService.addPhoneNumber(2L, "00441234567896", false);
-        int afterAddSize = phoneNumberService.listPhoneNumber().size();
+        int afterAddSize = phoneNumberService.getAllPhoneNumber().size();
         assertTrue(beforeAddSize + 1 == afterAddSize);
     }
 
@@ -43,21 +43,37 @@ public class PhoneNumberServiceImplTest {
     }
 
     @Test
-    public void testActivatePhoneNumber() {
+    public void testActivatePhoneNumber() throws Exception{
 
         String toBeActivatePhoneNumber = "00441234567895";
         phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
 
-        for(PhoneNumber phoneNumber : phoneNumberService.listPhoneNumber()) {
-            if(phoneNumber != null && toBeActivatePhoneNumber.equals(phoneNumber.getPhoneNumber())) {
-                assertEquals(false, phoneNumber.isActivate());
+        for(PhoneNumber phoneNumber : phoneNumberService.getAllPhoneNumber()) {
+            if(toBeActivatePhoneNumber.equals(phoneNumber.getPhoneNumber())) {
+                assertEquals(true, phoneNumber.isActivate());
             }
         }
     }
 
+    @Test(expected = Exception.class)
+    public void testNotExistActivatePhoneNumber() throws Exception {
+        String toBeActivatePhoneNumber = "00441234561234";
+        phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
+        exception.expectMessage("Given Phone number is not exist");
+    }
+
+    @Test(expected = Exception.class)
+    public void testAlreadyActivatePhoneNumber() throws Exception{
+        String toBeActivatePhoneNumber = "00441234567890";
+        phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
+        exception.expectMessage("Given Phone number is already activated");
+    }
+
+
+
     @Test
     public void testListPhoneNumber() {
-        assertEquals(6, phoneNumberService.listPhoneNumber().size());
+        assertEquals(6, phoneNumberService.getAllPhoneNumber().size());
     }
 
     @Test
