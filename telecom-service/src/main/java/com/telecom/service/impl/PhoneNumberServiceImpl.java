@@ -9,26 +9,42 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PhoneNumberServiceImpl implements PhoneNumberService {
+public class PhoneNumberServiceImpl implements PhoneNumberService{
 
     List<PhoneNumber> phoneNumberList = new ArrayList<PhoneNumber>();
 
     @Override
-    public PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) {
+    public PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) throws Exception{
 
-        PhoneNumber phoneNumberObj = new PhoneNumber();
-        phoneNumberObj.setCustomerId(customerId);
-        phoneNumberObj.setPhoneNumber(phoneNumber);
-        phoneNumberObj.setActivate(activate);
-        phoneNumberList.add(phoneNumberObj);
-        return phoneNumberObj;
+        if(!isPhoneNumberInList(phoneNumber)) {
+            PhoneNumber phoneNumberObj = new PhoneNumber();
+            phoneNumberObj.setCustomerId(customerId);
+            phoneNumberObj.setPhoneNumber(phoneNumber);
+            phoneNumberObj.setActivate(activate);
+            phoneNumberList.add(phoneNumberObj);
+            return phoneNumberObj;
+        }
+        else {
+            throw new Exception("Given Phone number is already added in the System");
+        }
+    }
+
+    private boolean isPhoneNumberInList(String phoneNumberToCheck) {
+        boolean result = false;
+        for(PhoneNumber phoneNumber : phoneNumberList) {
+            if(phoneNumber != null && phoneNumberToCheck.equals(phoneNumber.getPhoneNumber())) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override
-    public PhoneNumber activatePhoneNumber(String phoneNumberToctivate) {
+    public PhoneNumber activatePhoneNumber(String phoneNumberToActivate) {
 
         for(PhoneNumber phoneNumber : phoneNumberList) {
-            if(phoneNumber!=null && phoneNumberToctivate.equals(phoneNumber.getPhoneNumber())) {
+            if(phoneNumber!=null && phoneNumberToActivate.equals(phoneNumber.getPhoneNumber())) {
                 phoneNumber.setActivate(true);
                 break;
             }

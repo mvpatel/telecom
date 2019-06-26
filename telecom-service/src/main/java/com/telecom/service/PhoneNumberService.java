@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface PhoneNumberService {
 
-    PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate);
+    PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) throws Exception;
 
     PhoneNumber activatePhoneNumber(String PhoneNumber);
 
