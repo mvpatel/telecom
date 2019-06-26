@@ -50,6 +50,7 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
                 }
                 else {
                     phoneNumber.setActivate(true);
+                    phoneNumberList.set(phoneNumberList.indexOf(phoneNumber), phoneNumber);
                 }
                 break;
             }
