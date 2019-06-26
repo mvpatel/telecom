@@ -32,7 +32,7 @@ public class SwaggerConfig {
     }
 
     public Predicate<String> paths() {
-        return PathSelectors.ant("/api/v1/**");
+        return PathSelectors.ant("/api/**");
     }
 
     public Predicate<RequestHandler> apis() {
@@ -40,7 +40,11 @@ public class SwaggerConfig {
     }
 
     public String description() {
-        return "Provides a set of endpoints for telecom";
+        return "Provides a set of endpoints for telecom <br>" +
+                "There are following 3 Endpoints in this API<br>" +
+                "1) get all phone numbers <br>" +
+                "2) get all phone numbers of a single customer<br>" +
+                "3) activate a phone number";
     }
 
     public String title() {

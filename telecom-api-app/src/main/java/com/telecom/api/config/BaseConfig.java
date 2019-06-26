@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"com.telecom.*"})
-@EntityScan(basePackages = {"com.telecom.model.dao"})
+@EntityScan(basePackages = {"com.telecom.model.data"})
 public class BaseConfig {
     
 }

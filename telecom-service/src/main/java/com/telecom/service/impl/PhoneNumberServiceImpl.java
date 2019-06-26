@@ -1,6 +1,6 @@
 package com.telecom.service.impl;
 
-import com.telecom.model.dao.PhoneNumber;
+import com.telecom.model.data.PhoneNumber;
 import com.telecom.model.exception.PhoneNumberActivatedException;
 import com.telecom.model.exception.PhoneNumberDuplicateException;
 import com.telecom.model.exception.PhoneNumberNotExistException;
@@ -12,31 +12,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PhoneNumberServiceImpl implements PhoneNumberService{
+public class PhoneNumberServiceImpl implements PhoneNumberService {
 
     List<PhoneNumber> phoneNumberList = new ArrayList<PhoneNumber>();
 
 
     @Override
-    public PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) {
+    public PhoneNumber addPhoneNumber(Long customerId, String newPhoneNumber, boolean activate) {
 
-        if(!isPhoneNumberInList(phoneNumber)) {
-            PhoneNumber phoneNumberObj = new PhoneNumber();
-            phoneNumberObj.setCustomerId(customerId);
-            phoneNumberObj.setPhoneNumber(phoneNumber);
-            phoneNumberObj.setActivate(activate);
-            phoneNumberList.add(phoneNumberObj);
-            return phoneNumberObj;
-        }
-        else {
+        if (!isPhoneNumberInList(newPhoneNumber)) {
+            PhoneNumber phoneNumber = new PhoneNumber();
+            phoneNumber.setCustomerId(customerId);
+            phoneNumber.setPhoneNumber(newPhoneNumber);
+            phoneNumber.setActivate(activate);
+            this.phoneNumberList.add(phoneNumber);
+            return phoneNumber;
+        } else {
             throw new PhoneNumberDuplicateException("Given Phone number is already added in the System");
         }
     }
 
     private boolean isPhoneNumberInList(String phoneNumberToCheck) {
         boolean result = false;
-        for(PhoneNumber phoneNumber : phoneNumberList) {
-            if(phoneNumberToCheck.equals(phoneNumber.getPhoneNumber())) {
+        for (PhoneNumber phoneNumber : this.phoneNumberList) {
+            if (phoneNumberToCheck.equals(phoneNumber.getPhoneNumber())) {
                 result = true;
                 break;
             }
@@ -47,14 +46,13 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
     @Override
     public PhoneNumber activatePhoneNumber(String phoneNumberToActivate) {
 
-        for(PhoneNumber phoneNumber : phoneNumberList) {
-            if(phoneNumberToActivate.equals(phoneNumber.getPhoneNumber())) {
-                if(phoneNumber.isActivate()) {
+        for (PhoneNumber phoneNumber : this.phoneNumberList) {
+            if (phoneNumberToActivate.equals(phoneNumber.getPhoneNumber())) {
+                if (phoneNumber.isActivate()) {
                     throw new PhoneNumberActivatedException("Given Phone number is already activated");
-                }
-                else {
+                } else {
                     phoneNumber.setActivate(true);
-                    phoneNumberList.set(phoneNumberList.indexOf(phoneNumber), phoneNumber);
+                    this.phoneNumberList.set(this.phoneNumberList.indexOf(phoneNumber), phoneNumber);
                     return phoneNumber;
                 }
             }
@@ -70,25 +68,25 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
 
     @Override
     public List<PhoneNumber> getPhoneNumberByCustomerId(Long customerId) {
-            return phoneNumberList.stream()
-                    .filter(phoneNumber -> phoneNumber.getCustomerId().equals(customerId))
-                    .collect(Collectors.toList());
+        return this.phoneNumberList.stream()
+                .filter(phoneNumber -> phoneNumber.getCustomerId().equals(customerId))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void addDummyData() {
 
-        addPhoneNumber(1L, "00441234567890", false);
-        addPhoneNumber(1L, "00441234567891", false);
-        addPhoneNumber(1L, "00441234567892", false);
-        addPhoneNumber(2L, "00441234567893", false);
-        addPhoneNumber(2L, "00441234567894", false);
-        addPhoneNumber(2L, "00441234567895", false);
-        addPhoneNumber(3L, "00441234567896", false);
-        addPhoneNumber(3L, "00441234567897", false);
-        addPhoneNumber(3L, "00441234567898", false);
-        addPhoneNumber(4L, "00441234567899", false);
-        addPhoneNumber(4L, "00441234567810", false);
-        addPhoneNumber(5L, "00441234567811", false);
+        this.addPhoneNumber(1L, "00441234567890", false);
+        this.addPhoneNumber(1L, "00441234567891", false);
+        this.addPhoneNumber(1L, "00441234567892", false);
+        this.addPhoneNumber(2L, "00441234567893", false);
+        this.addPhoneNumber(2L, "00441234567894", false);
+        this.addPhoneNumber(2L, "00441234567895", false);
+        this.addPhoneNumber(3L, "00441234567896", false);
+        this.addPhoneNumber(3L, "00441234567897", false);
+        this.addPhoneNumber(3L, "00441234567898", false);
+        this.addPhoneNumber(4L, "00441234567899", false);
+        this.addPhoneNumber(4L, "00441234567810", false);
+        this.addPhoneNumber(5L, "00441234567811", false);
     }
 }

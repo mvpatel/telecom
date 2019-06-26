@@ -1,6 +1,6 @@
 package com.telecom.service.impl;
 
-import com.telecom.model.dao.PhoneNumber;
+import com.telecom.model.data.PhoneNumber;
 import com.telecom.model.exception.PhoneNumberActivatedException;
 import com.telecom.model.exception.PhoneNumberDuplicateException;
 import com.telecom.model.exception.PhoneNumberNotExistException;

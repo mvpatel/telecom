@@ -1,4 +1,2 @@
-com/twitter/service/FollowerService.class
-com/twitter/service/impl/FollowerServiceImpl.class
-com/twitter/service/MessageService.class
-com/twitter/service/impl/MessageServiceImpl.class
+com/telecom/service/impl/PhoneNumberServiceImpl.class
+com/telecom/service/PhoneNumberService.class

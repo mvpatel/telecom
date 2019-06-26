@@ -1,4 +1,4 @@
-package com.telecom.model.dao;
+package com.telecom.model.data;
 
 import lombok.Data;
 

@@ -1,5 +1,4 @@
-/home/meghavipatel/IdeaProjects/twitter/twitter-model/src/main/java/com/twitter/model/dao/Follower.java
-/home/meghavipatel/IdeaProjects/twitter/twitter-model/src/main/java/com/twitter/model/dao/Message.java
-/home/meghavipatel/IdeaProjects/twitter/twitter-model/src/main/java/com/twitter/model/dto/RestApiResponse.java
-/home/meghavipatel/IdeaProjects/twitter/twitter-model/src/main/java/com/twitter/model/dto/FollowUserRequest.java
-/home/meghavipatel/IdeaProjects/twitter/twitter-model/src/main/java/com/twitter/model/dto/MessageRequest.java
+/Users/mayankpatel/private/University/telecom/telecom-model/src/main/java/com/telecom/model/exception/PhoneNumberActivatedException.java
+/Users/mayankpatel/private/University/telecom/telecom-model/src/main/java/com/telecom/model/exception/PhoneNumberNotExistException.java
+/Users/mayankpatel/private/University/telecom/telecom-model/src/main/java/com/telecom/model/data/PhoneNumber.java
+/Users/mayankpatel/private/University/telecom/telecom-model/src/main/java/com/telecom/model/exception/PhoneNumberDuplicateException.java

@@ -1,5 +1,4 @@
-com/twitter/model/dto/FollowUserRequest.class
-com/twitter/model/dao/Follower.class
-com/twitter/model/dto/RestApiResponse.class
-com/twitter/model/dao/Message.class
-com/twitter/model/dto/MessageRequest.class
+com/telecom/model/exception/PhoneNumberNotExistException.class
+com/telecom/model/exception/PhoneNumberActivatedException.class
+com/telecom/model/data/PhoneNumber.class
+com/telecom/model/exception/PhoneNumberDuplicateException.class
