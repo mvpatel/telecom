@@ -3,7 +3,7 @@ package com.telecom.service;
 import com.telecom.model.dao.PhoneNumber;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public interface PhoneNumberService {
@@ -12,9 +12,9 @@ public interface PhoneNumberService {
 
     PhoneNumber activatePhoneNumber(String PhoneNumber);
 
-    Set<PhoneNumber> listPhoneNumber();
+    List<PhoneNumber> listPhoneNumber();
 
-    Set<PhoneNumber> getPhoneNumberByCustomerId(Long customerId);
+    List<PhoneNumber> getPhoneNumberByCustomerId(Long customerId);
 
 
 }
