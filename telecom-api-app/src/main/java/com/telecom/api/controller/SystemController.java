@@ -25,9 +25,9 @@ public class SystemController {
         phoneNumberService.addPhoneNumber(2L, "00441234567899", false);
         phoneNumberService.addPhoneNumber(2L, "00441234567810", false);
 //        phoneNumberService.addPhoneNumber(1L, "00441234567890", false);
-        phoneNumberService.listPhoneNumber();
-        phoneNumberService.getPhoneNumberByCustomerId(1L);
-        phoneNumberService.activatePhoneNumber("00441234567899");
+//        phoneNumberService.listPhoneNumber();
+        phoneNumberService.getPhoneNumberByCustomerId(3L);
+//        phoneNumberService.activatePhoneNumber("00441234567899");
 
         System.out.println("Testing is ended  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 

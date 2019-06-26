@@ -45,7 +45,12 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
 
         for(PhoneNumber phoneNumber : phoneNumberList) {
             if(phoneNumber!=null && phoneNumberToActivate.equals(phoneNumber.getPhoneNumber())) {
-                phoneNumber.setActivate(true);
+                if(phoneNumber.isActivate()) {
+                    System.out.println("Given Phone number is already activated");
+                }
+                else {
+                    phoneNumber.setActivate(true);
+                }
                 break;
             }
             return phoneNumber;
@@ -61,8 +66,8 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
 
     @Override
     public List<PhoneNumber> getPhoneNumberByCustomerId(Long customerId) {
-        return phoneNumberList.stream()
-                .filter(phoneNumber -> phoneNumber.getCustomerId().equals(customerId))
-                .collect(Collectors.toList());
+            return phoneNumberList.stream()
+                    .filter(phoneNumber -> phoneNumber.getCustomerId().equals(customerId))
+                    .collect(Collectors.toList());
     }
 }
