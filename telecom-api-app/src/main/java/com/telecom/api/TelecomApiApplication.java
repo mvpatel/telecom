@@ -15,13 +15,4 @@ public class TelecomApiApplication {
         SpringApplication.run(TelecomApiApplication.class, args);
 
     }
-
-
-//    @Bean
-//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-//        return args -> {
-//            SystemController systemController = ctx.getBean("systemController", SystemController.class);
-//            systemController.testing();
-//        };
-//    }
 }

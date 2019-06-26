@@ -1,6 +1,9 @@
 package com.telecom.service.impl;
 
 import com.telecom.model.dao.PhoneNumber;
+import com.telecom.model.exception.PhoneNumberActivatedException;
+import com.telecom.model.exception.PhoneNumberDuplicateException;
+import com.telecom.model.exception.PhoneNumberNotExistException;
 import com.telecom.service.PhoneNumberService;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,7 +21,7 @@ public class PhoneNumberServiceImplTest {
     private PhoneNumberService phoneNumberService = new PhoneNumberServiceImpl();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         phoneNumberService.addPhoneNumber(1L, "00441234567890", true);
         phoneNumberService.addPhoneNumber(1L, "00441234567891", false);
         phoneNumberService.addPhoneNumber(1L, "00441234567892", false);
@@ -28,7 +31,7 @@ public class PhoneNumberServiceImplTest {
     }
 
     @Test
-    public void testCorrectAddPhoneNumber() throws Exception {
+    public void testCorrectAddPhoneNumber() {
 
         int beforeAddSize = phoneNumberService.getAllPhoneNumber().size();
         phoneNumberService.addPhoneNumber(2L, "00441234567896", false);
@@ -36,14 +39,14 @@ public class PhoneNumberServiceImplTest {
         assertTrue(beforeAddSize + 1 == afterAddSize);
     }
 
-    @Test(expected = Exception.class)
-    public void testDuplicateAddPhoneNumber() throws Exception {
+    @Test(expected = PhoneNumberDuplicateException.class)
+    public void testDuplicateAddPhoneNumber() {
         phoneNumberService.addPhoneNumber(2L, "00441234567895", false);
         exception.expectMessage("Given Phone number is already added in the System");
     }
 
     @Test
-    public void testActivatePhoneNumber() throws Exception{
+    public void testActivatePhoneNumber() {
 
         String toBeActivatePhoneNumber = "00441234567895";
         phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
@@ -55,21 +58,19 @@ public class PhoneNumberServiceImplTest {
         }
     }
 
-    @Test(expected = Exception.class)
-    public void testNotExistActivatePhoneNumber() throws Exception {
+    @Test(expected = PhoneNumberNotExistException.class)
+    public void testNotExistActivatePhoneNumber() {
         String toBeActivatePhoneNumber = "00441234561234";
         phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
         exception.expectMessage("Given Phone number is not exist");
     }
 
-    @Test(expected = Exception.class)
-    public void testAlreadyActivatePhoneNumber() throws Exception{
+    @Test(expected = PhoneNumberActivatedException.class)
+    public void testAlreadyActivatePhoneNumber() {
         String toBeActivatePhoneNumber = "00441234567890";
         phoneNumberService.activatePhoneNumber(toBeActivatePhoneNumber);
         exception.expectMessage("Given Phone number is already activated");
     }
-
-
 
     @Test
     public void testListPhoneNumber() {

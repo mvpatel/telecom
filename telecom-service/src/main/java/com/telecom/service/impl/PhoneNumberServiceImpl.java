@@ -16,8 +16,9 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
 
     List<PhoneNumber> phoneNumberList = new ArrayList<PhoneNumber>();
 
+
     @Override
-    public PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) throws Exception{
+    public PhoneNumber addPhoneNumber(Long customerId, String phoneNumber, boolean activate) {
 
         if(!isPhoneNumberInList(phoneNumber)) {
             PhoneNumber phoneNumberObj = new PhoneNumber();
@@ -44,7 +45,7 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
     }
 
     @Override
-    public PhoneNumber activatePhoneNumber(String phoneNumberToActivate) throws Exception {
+    public PhoneNumber activatePhoneNumber(String phoneNumberToActivate) {
 
         for(PhoneNumber phoneNumber : phoneNumberList) {
             if(phoneNumberToActivate.equals(phoneNumber.getPhoneNumber())) {
@@ -75,7 +76,7 @@ public class PhoneNumberServiceImpl implements PhoneNumberService{
     }
 
     @Override
-    public void addDummyData() throws Exception{
+    public void addDummyData() {
 
         addPhoneNumber(1L, "00441234567890", false);
         addPhoneNumber(1L, "00441234567891", false);
